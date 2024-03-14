@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 15:11:47 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:18:29 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,17 @@ typedef struct s_data
 	bool	end_sim;
 	bool	all_threads_ready;
 	t_mtx	data_mutex;
+	t_mtx	write_mutex;
 	t_fork	*forks;
 	t_philo	*philos;
 }			t_data;
+
+typedef enum e_time
+{
+	SECOND,
+	MILLISECOND,
+	MICROSECOND,
+}		t_time;
 
 /* Parsing */
 int		check_input(int argc, char **argv);
@@ -66,6 +74,11 @@ void	ft_parse_input(t_data *data, char **argv);
 void	ft_init_data(t_data *data);
 void	ft_init_philo(t_data *data);
 void	ft_assign_forks(t_philo *philo, t_fork *forks, int pos);
+
+/* Sync */
+void	ft_wait_all_threads(t_data *data);
+long	gettime(t_time time_code);
+void	precise_usleep(long usec, t_data *data);
 
 /* Sim */
 void	ft_start_sim(t_data *data);

@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:13:56 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 15:25:01 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/14 18:23:16 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	*ft_sim(void *adat)
 	t_philo	*philo;
 
 	philo = (t_philo *)adat;
-	// ft_wait_all_threads(philo->data);
+	ft_wait_all_threads(philo->data);
+	// while (!ft_sim_finished(philo->data))
+	// {
+	// 	// 
+	// }
 	return (NULL);
 }
 
@@ -39,11 +43,16 @@ void	ft_start_sim(t_data *data)
 	if (data->max_meals == 0)
 		return ;
 	else if (data->philo_n == 1)
-		;// handle
+		;// handle one philo
 	else
 	{
 		while (++i < data->philo_n)
 			pthread_create(&data->philos[i].thread_id, NULL, ft_sim,
 				&data->philos[i]);
 	}
+	data->start_sim = gettime(MILLISECOND);
+	ft_set_bool(&data->data_mutex, &data->all_threads_ready, true);
+	i = -1;
+	while (++i < data->philo_n)
+		pthread_join(data->philos[i].thread_id, NULL);
 }
