@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 14:10:33 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:11:47 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ typedef struct s_data
 	long	max_meals;
 	long	start_sim;
 	bool	end_sim;
+	bool	all_threads_ready;
+	t_mtx	data_mutex;
 	t_fork	*forks;
 	t_philo	*philos;
 }			t_data;
@@ -64,6 +66,16 @@ void	ft_parse_input(t_data *data, char **argv);
 void	ft_init_data(t_data *data);
 void	ft_init_philo(t_data *data);
 void	ft_assign_forks(t_philo *philo, t_fork *forks, int pos);
+
+/* Sim */
+void	ft_start_sim(t_data *data);
+
+/* Get & Set */
+void	ft_set_bool(t_mtx *mutex, bool *dst, bool val);
+bool	ft_get_bool(t_mtx *mutex, bool *val);
+void	ft_set_long(t_mtx *mutex, long *dst, long val);
+long	ft_get_long(t_mtx *mutex, long *val);
+bool	ft_sim_finished(t_data *data);
 
 /* Utils */
 long	ft_atol(char *str);

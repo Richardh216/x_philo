@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:29:58 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 13:22:10 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/14 15:08:06 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		ft_error("You messed up Buddy!");
 	ft_parse_input(&data, argv);
 	ft_init_data(&data);
-	// ft_exp_start(&data);
+	// ft_start_sim(&data);
 	// ft_free(&data);
 	printf("Hello bozo!\n");
 	return (0);

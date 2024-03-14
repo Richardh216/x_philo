@@ -10,7 +10,7 @@ SRC_DIR = src/
 
 HEADERS = := -I ./include
 
-SRC := main.c freedom.c parsing.c utils.c init.c
+SRC := main.c freedom.c parsing.c utils.c init.c get_set.c
 
 OBJ = $(SRC:.c=.o)
 
