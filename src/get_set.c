@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_set.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:58:47 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 15:28:46 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:19:59 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ void	ft_set_long(t_mtx *mutex, long *dst, long val)
 	pthread_mutex_unlock(mutex);
 }
 
-long	ft_get_long(t_mtx *mutex, long *val)
+int	ft_get_long(t_mtx *mutex, int *val)
 {
-	long	ret;
+	int	ret;
 
 	pthread_mutex_lock(mutex);
 	ret = *val;

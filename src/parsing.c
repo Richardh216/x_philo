@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:27:24 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/13 17:17:17 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:39:44 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	check_digits(int argc, char **argv)
 	{
 		j = -1;
 		while (argv[i][++j])
-			if ((argv[i][j] < '0' || argv[i][j] > '9') && argv[i][j] != '+')
+			if ((argv[i][j] < '0' || argv[i][j] > '9'))
 				return (1);
 		n = ft_atol(argv[i]);
 		if (n > INT_MAX || n < INT_MIN)

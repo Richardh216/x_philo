@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 18:18:29 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/16 14:20:33 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,38 +24,49 @@
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_data t_data;
 
-typedef struct s_fork
-{
-	t_mtx	fork;
-	int		id;
-}			t_fork;
+// typedef struct s_fork
+// {
+// 	t_mtx	fork;
+// 	int		id;
+// }			t_fork;
 
 typedef struct s_philo
 {
 	int			id;
+	long		ttd;
+	long		tte;
+	long		tts;
+	long		start;
+	int			max;
 	int			meal_count;
 	bool		full;
+	bool		eating;
+	bool		dead;
 	long		last_meal_time;
-	t_fork		*first_fork;
-	t_fork		*second_fork;
+	t_mtx		*first_fork;
+	t_mtx		*second_fork;
 	pthread_t	thread_id;
+	t_mtx		*data_mutex;
+	t_mtx		*write_mutex;
+	t_mtx		meal;
 	t_data		*data;
 }	t_philo;
 
 typedef struct s_data
 {
-	long	philo_n;
+	int	philo_n;
 	long	time_to_die;
 	long	time_to_eat;
 	long	time_to_sleep;
-	long	max_meals;
+	int		max_meals;
 	long	start_sim;
 	bool	end_sim;
+	bool	dead;
 	bool	all_threads_ready;
 	t_mtx	data_mutex;
 	t_mtx	write_mutex;
-	t_fork	*forks;
-	t_philo	*philos;
+	t_mtx	forks[200];
+	t_philo	philos[200];
 }			t_data;
 
 typedef enum e_time
@@ -73,12 +84,12 @@ void	ft_parse_input(t_data *data, char **argv);
 /* Init */
 void	ft_init_data(t_data *data);
 void	ft_init_philo(t_data *data);
-void	ft_assign_forks(t_philo *philo, t_fork *forks, int pos);
+void	ft_assign_forks(t_data *data);
 
 /* Sync */
 void	ft_wait_all_threads(t_data *data);
 long	gettime(t_time time_code);
-void	precise_usleep(long usec, t_data *data);
+void	precise_usleep(long usec);
 
 /* Sim */
 void	ft_start_sim(t_data *data);
@@ -87,7 +98,7 @@ void	ft_start_sim(t_data *data);
 void	ft_set_bool(t_mtx *mutex, bool *dst, bool val);
 bool	ft_get_bool(t_mtx *mutex, bool *val);
 void	ft_set_long(t_mtx *mutex, long *dst, long val);
-long	ft_get_long(t_mtx *mutex, long *val);
+int		ft_get_long(t_mtx *mutex, int *val);
 bool	ft_sim_finished(t_data *data);
 
 /* Utils */
@@ -95,5 +106,11 @@ long	ft_atol(char *str);
 
 /* Errors */
 void	ft_error(const char *str);
+void	ft_mtx_destroyer(t_data *data);
+
+/* Routine */
+
+void	eat(t_philo *philo);
+void	safe_print(t_philo *philo, char *str);
 
 #endif

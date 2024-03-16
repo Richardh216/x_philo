@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sync.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:43:51 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 18:16:27 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:42:55 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ long	gettime(t_time time_code)
 	return (0);
 }
 
-void	precise_usleep(long usec, t_data *data)
+void	precise_usleep(long usec)
 {
 	long	start;
 	long	elapsed;
@@ -44,8 +44,6 @@ void	precise_usleep(long usec, t_data *data)
 	start = gettime(MICROSECOND);
 	while (gettime(MICROSECOND) - start < usec)
 	{
-		if (ft_sim_finished(data))
-			break ;
 		elapsed = gettime(MICROSECOND) - start;
 		rem = usec - elapsed;
 		if (rem > 1e3)

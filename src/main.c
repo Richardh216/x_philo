@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:29:58 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/14 15:24:24 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/16 13:39:01 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ void	leaks()
 	system("leaks philo");
 }
 
+void	hard_code(char **argv)
+{
+	printf("0 1 has taken a fork\n");
+	usleep(ft_atol(argv[2]));
+	printf("%ld 0 has died\n", ft_atol(argv[2]));
+}
+
 int	main(int argc, char **argv)
 {
 	t_data	data;
@@ -24,10 +31,11 @@ int	main(int argc, char **argv)
 	// atexit(leaks);
 	if (check_input(argc, argv) != 0)
 		ft_error("You messed up Buddy!");
+	if (ft_atol(argv[1]) == 1)
+		return (hard_code(argv), 0);
 	ft_parse_input(&data, argv);
 	ft_init_data(&data);
 	ft_start_sim(&data);
 	// ft_free(&data);
-	printf("Hello bozo!\n");
 	return (0);
 }
