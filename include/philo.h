@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/16 14:20:33 by richardh         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:06:28 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@
 
 typedef pthread_mutex_t	t_mtx;
 typedef struct s_data t_data;
-
-// typedef struct s_fork
-// {
-// 	t_mtx	fork;
-// 	int		id;
-// }			t_fork;
 
 typedef struct s_philo
 {
@@ -63,6 +57,7 @@ typedef struct s_data
 	bool	end_sim;
 	bool	dead;
 	bool	all_threads_ready;
+	pthread_t	oversee;
 	t_mtx	data_mutex;
 	t_mtx	write_mutex;
 	t_mtx	forks[200];
@@ -71,7 +66,6 @@ typedef struct s_data
 
 typedef enum e_time
 {
-	SECOND,
 	MILLISECOND,
 	MICROSECOND,
 }		t_time;
@@ -100,9 +94,11 @@ bool	ft_get_bool(t_mtx *mutex, bool *val);
 void	ft_set_long(t_mtx *mutex, long *dst, long val);
 int		ft_get_long(t_mtx *mutex, int *val);
 bool	ft_sim_finished(t_data *data);
+long	ft_get_long2(t_mtx *mutex, long *val);
 
 /* Utils */
 long	ft_atol(char *str);
+bool	philo_dead(t_philo *philo);
 
 /* Errors */
 void	ft_error(const char *str);
@@ -112,5 +108,8 @@ void	ft_mtx_destroyer(t_data *data);
 
 void	eat(t_philo *philo);
 void	safe_print(t_philo *philo, char *str);
+void	*s_sim(void *data);
+long	ft_gettime(void);
+int	ft_sleep(size_t MIL);
 
 #endif
