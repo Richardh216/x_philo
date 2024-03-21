@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:29:58 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/16 13:39:01 by richardh         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:16:40 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	leaks()
 void	hard_code(char **argv)
 {
 	printf("0 1 has taken a fork\n");
-	usleep(ft_atol(argv[2]));
+	ft_sleep(ft_atol(argv[2]));
 	printf("%ld 0 has died\n", ft_atol(argv[2]));
 }
 

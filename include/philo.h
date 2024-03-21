@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/20 18:06:28 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/21 13:48:30 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_data
 	bool	end_sim;
 	bool	dead;
 	bool	all_threads_ready;
+	bool	ate;
 	pthread_t	oversee;
 	t_mtx	data_mutex;
 	t_mtx	write_mutex;
@@ -108,8 +109,11 @@ void	ft_mtx_destroyer(t_data *data);
 
 void	eat(t_philo *philo);
 void	safe_print(t_philo *philo, char *str);
-void	*s_sim(void *data);
+void	*s_sim(t_data *data);
 long	ft_gettime(void);
-int	ft_sleep(size_t MIL);
+int		ft_sleep(size_t MIL);
+void	eat_check(t_data *data);
+void	death_check(t_data *data);
+void	death_write(t_data *data, int philo_id);
 
 #endif

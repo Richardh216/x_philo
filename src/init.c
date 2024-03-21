@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:40 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/20 18:29:47 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/21 15:35:38 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_init_philo(t_data *data)
 		data->philos[i].write_mutex = &data->write_mutex;
 		data->philos[i].data_mutex = &data->data_mutex;
 		pthread_mutex_init(&data->philos[i].meal, NULL);
+		data->philos[i].data = data;
 	}
 	ft_assign_forks(data);
 }
@@ -57,6 +58,7 @@ void	ft_init_data(t_data *data)
 	data->end_sim = false;
 	data->all_threads_ready = false;
 	data->dead = false;
+	data->ate = false;
 	pthread_mutex_init(&data->data_mutex, NULL);
 	pthread_mutex_init(&data->write_mutex, NULL);
 	while (++i < data->philo_n)
