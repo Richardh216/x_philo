@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 15:58:47 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/20 12:29:04 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:41:33 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,3 @@ long	ft_get_long2(t_mtx *mutex, long *val)
 	return (ret);
 }
 
-bool	ft_sim_finished(t_data *data)
-{
-	return (ft_get_bool(&data->data_mutex, &data->end_sim));
-}

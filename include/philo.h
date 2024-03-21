@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/21 13:48:30 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:51:04 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,6 @@ typedef struct s_data
 	t_philo	philos[200];
 }			t_data;
 
-typedef enum e_time
-{
-	MILLISECOND,
-	MICROSECOND,
-}		t_time;
-
 /* Parsing */
 int		check_input(int argc, char **argv);
 int		check_digits(int argc, char **argv);
@@ -81,37 +75,30 @@ void	ft_init_data(t_data *data);
 void	ft_init_philo(t_data *data);
 void	ft_assign_forks(t_data *data);
 
-/* Sync */
-void	ft_wait_all_threads(t_data *data);
-long	gettime(t_time time_code);
-void	precise_usleep(long usec);
-
-/* Sim */
-void	ft_start_sim(t_data *data);
+/* Time */
+long	ft_gettime(void);
+int		ft_sleep(size_t MIL);
 
 /* Get & Set */
 void	ft_set_bool(t_mtx *mutex, bool *dst, bool val);
 bool	ft_get_bool(t_mtx *mutex, bool *val);
 void	ft_set_long(t_mtx *mutex, long *dst, long val);
 int		ft_get_long(t_mtx *mutex, int *val);
-bool	ft_sim_finished(t_data *data);
 long	ft_get_long2(t_mtx *mutex, long *val);
 
 /* Utils */
 long	ft_atol(char *str);
-bool	philo_dead(t_philo *philo);
+
 
 /* Errors */
 void	ft_error(const char *str);
 void	ft_mtx_destroyer(t_data *data);
 
 /* Routine */
-
+void	ft_start_sim(t_data *data);
 void	eat(t_philo *philo);
 void	safe_print(t_philo *philo, char *str);
 void	*s_sim(t_data *data);
-long	ft_gettime(void);
-int		ft_sleep(size_t MIL);
 void	eat_check(t_data *data);
 void	death_check(t_data *data);
 void	death_write(t_data *data, int philo_id);

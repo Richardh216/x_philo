@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:29:58 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/21 16:16:40 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:53:20 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int	main(int argc, char **argv)
 	ft_parse_input(&data, argv);
 	ft_init_data(&data);
 	ft_start_sim(&data);
-	// ft_free(&data);
 	return (0);
 }
