@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/21 16:51:04 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:16:04 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ typedef struct s_data
 	long	start_sim;
 	bool	end_sim;
 	bool	dead;
-	bool	all_threads_ready;
 	bool	ate;
 	pthread_t	oversee;
 	t_mtx	data_mutex;
@@ -83,18 +82,17 @@ int		ft_sleep(size_t MIL);
 void	ft_set_bool(t_mtx *mutex, bool *dst, bool val);
 bool	ft_get_bool(t_mtx *mutex, bool *val);
 void	ft_set_long(t_mtx *mutex, long *dst, long val);
-int		ft_get_long(t_mtx *mutex, int *val);
-long	ft_get_long2(t_mtx *mutex, long *val);
+int		ft_get_int(t_mtx *mutex, int *val);
 
 /* Utils */
 long	ft_atol(char *str);
-
 
 /* Errors */
 void	ft_error(const char *str);
 void	ft_mtx_destroyer(t_data *data);
 
 /* Routine */
+void	hard_code(char **argv);
 void	ft_start_sim(t_data *data);
 void	eat(t_philo *philo);
 void	safe_print(t_philo *philo, char *str);

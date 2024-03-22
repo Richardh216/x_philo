@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 13:20:40 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/21 15:35:38 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:11:40 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	ft_init_data(t_data *data)
 
 	i = -1;
 	data->end_sim = false;
-	data->all_threads_ready = false;
 	data->dead = false;
 	data->ate = false;
 	pthread_mutex_init(&data->data_mutex, NULL);

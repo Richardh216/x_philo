@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oversee.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:20:08 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/21 16:56:26 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:06:44 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	eat_check(t_data *data)
 void	death_check(t_data *data)
 {
 	int				i;
-	long long int	val;
+	long 	val;
 
 	i = -1;
 	while (++i < data->philo_n)
 	{
 		pthread_mutex_lock(&data->philos[i].meal);
-		val = ft_gettime() >= data->philos[i].ttd
-			+ data->philos[i].last_meal_time;
+		val = data->philos[i].ttd
+			+ data->philos[i].last_meal_time - data->philos[i].tts;
 		pthread_mutex_unlock(&data->philos[i].meal);
 		if (ft_get_bool(data->philos[i].data_mutex,
-				&data->philos[i].eating) == false && val)
+				&data->philos[i].eating) == false && val < ft_gettime())
 		{
 			ft_set_bool(&data->data_mutex, &data->dead, true);
 			ft_set_bool(&data->data_mutex, &data->philos[i].dead, true);
@@ -66,10 +66,7 @@ void	death_write(t_data *data, int philo_id)
 
 void	*s_sim(t_data *data)
 {
-	int		i;
-
-	i = -1;
-	ft_sleep(data->philos[0].ttd);
+	ft_sleep(data->time_to_die);
 	while (1)
 	{
 		eat_check(data);
@@ -78,7 +75,7 @@ void	*s_sim(t_data *data)
 		death_check(data);
 		if (ft_get_bool(&data->data_mutex, &data->dead) == true)
 			return (NULL);
-		ft_sleep(data->philos[0].ttd / 2);
+		ft_sleep(data->time_to_die / 2);
 	}
 	return (NULL);
 }

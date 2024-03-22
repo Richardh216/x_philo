@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sim.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:13:56 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/21 16:34:25 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 12:18:36 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	eat(t_philo *philo)
 	safe_print(philo, "has taken a fork");
 	safe_print(philo, "is eating");
 	pthread_mutex_lock(&philo->meal);
-	philo->last_meal_time = ft_gettime();
 	philo->eating = true;
 	philo->meal_count += 1;
 	ft_sleep(philo->tte);
+	philo->last_meal_time = ft_gettime();
 	philo->eating = false;
 	pthread_mutex_unlock(&philo->meal);
 	pthread_mutex_unlock((*philo).second_fork);
@@ -41,17 +41,15 @@ void	eat(t_philo *philo)
 void	*ft_sim(void *adat)
 {
 	t_philo	*philo;
-	t_data	*data;
 
 	philo = (t_philo *)adat;
-	data = (t_data *)adat;
 	if (philo->id % 2 == 0)
 		usleep(1500);
 	while (1)
 	{
 		if (ft_get_bool(philo->data_mutex, &philo->data->dead) == true)
 			break ;
-		if (ft_get_long(&philo->meal, &philo->meal_count) == philo->max)
+		if (ft_get_int(&philo->meal, &philo->meal_count) == philo->max)
 		{
 			ft_set_bool(philo->data_mutex, &philo->full, true);
 			break ;
@@ -59,6 +57,11 @@ void	*ft_sim(void *adat)
 		eat(philo);
 		safe_print(philo, "is sleeping");
 		ft_sleep(philo->tts);
+		if (ft_get_int(&philo->meal, &philo->meal_count) == philo->max)
+		{
+			ft_set_bool(philo->data_mutex, &philo->full, true);
+			break ;
+		}
 		safe_print(philo, "is thinking");
 	}
 	return (NULL);
@@ -86,4 +89,11 @@ void	ft_start_sim(t_data *data)
 	while (++i < data->philo_n)
 		pthread_join(data->philos[i].thread_id, NULL);
 	ft_mtx_destroyer(data);
+}
+
+void	hard_code(char **argv)
+{
+	printf("0 1 has taken a fork\n");
+	ft_sleep(ft_atol(argv[2]));
+	printf("%ld 0 has died\n", ft_atol(argv[2]));
 }
