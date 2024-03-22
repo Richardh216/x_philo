@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:20:08 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 13:20:51 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:00:04 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	death_check(t_data *data)
 		val = data->philos[i].ttd
 			+ data->philos[i].last_meal_time - data->philos[i].tts;
 		pthread_mutex_unlock(&data->philos[i].meal);
-		if (ft_get_bool(data->philos[i].data_mutex,
+		if (ft_get_bool(data->philos[i].data_mutex, //use meal mutex istead, possible data race
 				&data->philos[i].eating) == false && val < ft_gettime())
 		{
 			ft_set_bool(&data->data_mutex, &data->dead, true);

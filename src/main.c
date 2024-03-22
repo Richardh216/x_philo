@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:29:58 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 13:21:37 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 15:02:49 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,11 @@
 // 	system("leaks philo");
 // }
 // 	atexit(leaks);
+
+// case with 4 310 200 100, no one dies, but one should die at least, set lmt at beginning of the eating
+
+// https://accu.org/journals/overload/21/114/floyd_1867/
+// check with valgrind for possible data race
 
 int	main(int argc, char **argv)
 {

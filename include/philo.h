@@ -6,7 +6,7 @@
 /*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 13:34:52 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:51:20 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <limits.h>
 
 typedef pthread_mutex_t	t_mtx;
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 
 typedef struct s_philo
 {
@@ -48,20 +48,20 @@ typedef struct s_philo
 
 typedef struct s_data
 {
-	int	philo_n;
-	long	time_to_die;
-	long	time_to_eat;
-	long	time_to_sleep;
-	int		max_meals;
-	long	start_sim;
-	bool	end_sim;
-	bool	dead;
-	bool	ate;
+	int			philo_n;
+	long		time_to_die;
+	long		time_to_eat;
+	long		time_to_sleep;
+	int			max_meals;
+	long		start_sim;
+	bool		end_sim;
+	bool		dead;
+	bool		ate;
 	pthread_t	oversee;
-	t_mtx	data_mutex;
-	t_mtx	write_mutex;
-	t_mtx	forks[200];
-	t_philo	philos[200];
+	t_mtx		data_mutex;
+	t_mtx		write_mutex;
+	t_mtx		forks[200];
+	t_philo		philos[200];
 }			t_data;
 
 /* Parsing */
