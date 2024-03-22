@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:20:57 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 12:16:04 by richardh         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:34:52 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ int		ft_sleep(size_t MIL);
 /* Get & Set */
 void	ft_set_bool(t_mtx *mutex, bool *dst, bool val);
 bool	ft_get_bool(t_mtx *mutex, bool *val);
-void	ft_set_long(t_mtx *mutex, long *dst, long val);
 int		ft_get_int(t_mtx *mutex, int *val);
 
 /* Utils */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   oversee.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 18:20:08 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 12:06:44 by richardh         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:20:51 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void	eat_check(t_data *data)
 
 void	death_check(t_data *data)
 {
-	int				i;
-	long 	val;
+	int		i;
+	long	val;
 
 	i = -1;
 	while (++i < data->philo_n)

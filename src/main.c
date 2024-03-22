@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 13:29:58 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 12:11:05 by richardh         ###   ########.fr       */
+/*   Updated: 2024/03/22 13:21:37 by rhorvath         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (check_input(argc, argv) != 0)
-		ft_error("You messed up Buddy!");
+		ft_error("Incorrect Input!");
 	if (ft_atol(argv[1]) == 1)
 		return (hard_code(argv), 0);
 	ft_parse_input(&data, argv);
