@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sim.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhorvath <rhorvath@student.42.fr>          +#+  +:+       +#+        */
+/*   By: richardh <richardh@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:13:56 by rhorvath          #+#    #+#             */
-/*   Updated: 2024/03/22 15:15:57 by rhorvath         ###   ########.fr       */
+/*   Updated: 2024/03/23 19:06:45 by richardh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ void	eat(t_philo *philo)
 	safe_print(philo, "has taken a fork");
 	safe_print(philo, "is eating");
 	pthread_mutex_lock(&philo->meal);
+	philo->last_meal_time = ft_gettime();
 	philo->eating = true;
 	philo->meal_count += 1;
 	ft_sleep(philo->tte);
-	philo->last_meal_time = ft_gettime();
 	philo->eating = false;
 	pthread_mutex_unlock(&philo->meal);
 	pthread_mutex_unlock((*philo).second_fork);
@@ -80,7 +80,7 @@ void	ft_start_sim(t_data *data)
 	i = -1;
 	while (++i < data->philo_n)
 	{
-		data->philos[i].last_meal_time = ft_gettime();
+		//data->philos[i].last_meal_time = ft_gettime();
 		pthread_create(&data->philos[i].thread_id, NULL, ft_sim,
 			(void *)&data->philos[i]);
 	}
